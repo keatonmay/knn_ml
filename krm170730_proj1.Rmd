@@ -1,0 +1,58 @@
+Project 1
+
+```{r}
+data("iris")
+library(class)
+```
+
+```{r}
+summary(iris)
+```
+
+```{r}
+names(iris)
+```
+
+
+```{r}
+head(iris)
+```
+
+```{r}
+is.factor(iris$Species)
+```
+
+```{r}
+plot(iris[,1:4])
+```
+
+```{r}
+boxplot(iris$Sepal.Length, iris$Sepal.Width, iris$Petal.Length, iris$Petal.Width)
+```
+
+
+```{r}
+start.time <- Sys.time()
+
+set.seed(1234)
+i <- sample(1:nrow(iris), 0.80*nrow(iris))
+train <- iris[i,]
+test <- iris[-i,]
+fit <- knn(train[,1:4], test[,1:4], cl=train$Species, k=3)
+acc <- mean(fit == test$Species)
+table(fit, test$Species)
+
+acc
+
+end.time <- Sys.time()
+time.taken <- end.time - start.time
+```
+
+```{r}
+time.taken
+```
+
+```{r}
+fit
+```
+
